@@ -79,6 +79,14 @@ public class LocationShould
     }
 
     [Fact]
+    public void ThrowExceptionWhenOtherLocationIsNull()
+    {
+        var location = Location.Create(1, 1);
+        var exception = Assert.Throws<ArgumentNullException>(() => location.DistanceTo(null!));
+        exception.ParamName.Should().Be("location");
+    }
+
+    [Fact]
     public void BeRandomWhenRandomLocationsOnCreated()
     {
         const int sequenceLength = 5;
