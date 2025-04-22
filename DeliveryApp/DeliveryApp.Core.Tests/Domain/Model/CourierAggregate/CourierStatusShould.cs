@@ -8,18 +8,12 @@ namespace DeliveryApp.Core.Tests.Domain.Model.CourierAggregate;
 public class CourierStatusShould
 {
     [Fact]
-    public void FreeStatusNameIsCorrect()
+    public void StatusesNameIsCorrect()
     {
         var free = CourierStatus.Free;
-
-        free.Name.Should().Be("free");
-    }
-    
-    [Fact]
-    public void BusyStatusNameIsCorrect()
-    {
         var busy = CourierStatus.Busy;
 
+        free.Name.Should().Be("free");
         busy.Name.Should().Be("busy");
     }
     
