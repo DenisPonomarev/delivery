@@ -8,13 +8,15 @@ namespace DeliveryApp.Core.Tests.Domain.Model.CourierAggregate;
 
 public class TransportShould
 {
-    [Fact]
-    public void BeCorrectWhenIsCorrectOnCreated()
+    [Theory]
+    [InlineData(1)]
+    [InlineData(2)]
+    [InlineData(3)]
+    public void BeCorrectWhenIsCorrectOnCreated(int speed)
     {
         const string name = "car";
-        const int speed = 3;
 
-        var transport = domainCourier.Transport.Create(name, speed);
+        var transport = new domainCourier.Transport(name, speed);
 
         transport.Name.Should().Be(name);
         transport.Speed.Should().Be(speed);
@@ -27,7 +29,7 @@ public class TransportShould
     public void ThrowExceptionWhenSpeedIsIncorrect(int speed)
     {
         const string name = "car";
-        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => domainCourier.Transport.Create(name, speed));
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new domainCourier.Transport(name, speed));
         exception.ParamName.Should().Be("speed");
     }
 
@@ -37,7 +39,7 @@ public class TransportShould
     public void ThrowExceptionWhenNameIsIncorrect(string name)
     {
         const int speed = 1;
-        var exception = Assert.Throws<ArgumentException>(() => domainCourier.Transport.Create(name, speed));
+        var exception = Assert.Throws<ArgumentException>(() => new domainCourier.Transport(name, speed));
         exception.ParamName.Should().Be("name");
     }
 
@@ -47,9 +49,9 @@ public class TransportShould
         const string name = "car";
         const int speed = 3;
 
-        var transport = domainCourier.Transport.Create(name, speed);
+        var transport = new domainCourier.Transport(name, speed);
 
-        var targetLocation = Location.Create(1, 1);
+        var targetLocation = new Location(1, 1);
 
         var exception = Assert.Throws<NullReferenceException>(() => transport.Move(null!, targetLocation));
         exception.Message.Should().Be("current");
@@ -61,9 +63,9 @@ public class TransportShould
         const string name = "car";
         const int speed = 3;
 
-        var transport = domainCourier.Transport.Create(name, speed);
+        var transport = new domainCourier.Transport(name, speed);
 
-        var currentLocation = Location.Create(1, 1);
+        var currentLocation = new Location(1, 1);
 
         var exception = Assert.Throws<NullReferenceException>(() => transport.Move(currentLocation, null!));
         exception.Message.Should().Be("target");
@@ -100,10 +102,10 @@ public class TransportShould
     {
         const string name = "car";
 
-        var transport = domainCourier.Transport.Create(name, speed);
+        var transport = new domainCourier.Transport(name, speed);
 
-        var currentLocation = Location.Create(currX, currY);
-        var targetLocation = Location.Create(targetX, targetY);
+        var currentLocation = new Location(currX, currY);
+        var targetLocation = new Location(targetX, targetY);
 
         var expectedLocation = transport.Move(currentLocation, targetLocation);
 
