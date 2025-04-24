@@ -11,7 +11,7 @@ public class LocationShould
     {
         const byte x = 1, y = 1;
 
-        var location = Location.Create(x, y);
+        var location = new Location(x, y);
 
         location.X.Should().Be(x);
         location.Y.Should().Be(y);
@@ -23,7 +23,7 @@ public class LocationShould
     public void ThrowExceptionWhenXCoordinateIsIncorrect(byte x)
     {
         const byte y = 1;
-        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => Location.Create(x, y));
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new Location(x, y));
         exception.ParamName.Should().Be("x");
     }
 
@@ -33,7 +33,7 @@ public class LocationShould
     public void ThrowExceptionWhenYCoordinateIsIncorrect(byte y)
     {
         const byte x = 1;
-        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => Location.Create(x, y));
+        var exception = Assert.Throws<ArgumentOutOfRangeException>(() => new Location(x, y));
         exception.ParamName.Should().Be("y");
     }
 
@@ -42,8 +42,8 @@ public class LocationShould
     {
         const byte x = 1, y = 1;
 
-        var firstLocation = Location.Create(x, y);
-        var secondLocation = Location.Create(x, y);
+        var firstLocation = new Location(x, y);
+        var secondLocation = new Location(x, y);
 
         var isEqual = firstLocation == secondLocation;
 
@@ -56,8 +56,8 @@ public class LocationShould
     [InlineData(1, 1, 2, 2)]
     public void BeNotEqualWhenCoordinatesAreNotEqual(byte x1, byte y1, byte x2, byte y2)
     {
-        var firstLocation = Location.Create(x1, y1);
-        var secondLocation = Location.Create(x2, y2);
+        var firstLocation = new Location(x1, y1);
+        var secondLocation = new Location(x2, y2);
 
         var isNotEqual = firstLocation != secondLocation;
 
@@ -72,8 +72,8 @@ public class LocationShould
     [InlineData(2, 2, 1, 1, 2)]
     public void DistanceIsCorrect(byte x1, byte y1, byte x2, byte y2, int distance)
     {
-        var firstLocation = Location.Create(x1, y1);
-        var secondLocation = Location.Create(x2, y2);
+        var firstLocation = new Location(x1, y1);
+        var secondLocation = new Location(x2, y2);
 
         firstLocation.DistanceTo(secondLocation).Should().Be(distance);
     }
@@ -81,7 +81,7 @@ public class LocationShould
     [Fact]
     public void ThrowExceptionWhenOtherLocationIsNull()
     {
-        var location = Location.Create(1, 1);
+        var location = new Location(1, 1);
         var exception = Assert.Throws<ArgumentNullException>(() => location.DistanceTo(null!));
         exception.ParamName.Should().Be("location");
     }
@@ -92,5 +92,21 @@ public class LocationShould
         const int sequenceLength = 5;
         var uniqueLocationsCount = Enumerable.Range(0, sequenceLength).Select(_ => Location.CreateRandom()).Distinct().Count();
         uniqueLocationsCount.Should().BeGreaterThan(1);
+    }
+
+    [Fact]
+    public void MinLocationBeCorrectOnCreated()
+    {
+        var minLocation = Location.MinLocation;
+        minLocation.X.Should().Be(1);
+        minLocation.Y.Should().Be(1);
+    }
+    
+    [Fact]
+    public void MaxLocationBeCorrectOnCreated()
+    {
+        var maxLocation = Location.MaxLocation;
+        maxLocation.X.Should().Be(10);
+        maxLocation.Y.Should().Be(10);
     }
 }
