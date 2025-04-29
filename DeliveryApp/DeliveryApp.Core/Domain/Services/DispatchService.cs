@@ -11,8 +11,7 @@ public class DispatchService : IDispatchService
         if (order.Status != OrderStatus.Created)
             throw new Exception($"The order must have the status '{OrderStatus.Created.Name}'.");
         
-        ArgumentNullException.ThrowIfNull(couriers);
-        if (couriers.Count == 0)
+        if (couriers == null || couriers.Count == 0)
             throw new Exception("There are no couriers available.");
         
         var freeCouriers = couriers.Where(c => c.Status == CourierStatus.Free).ToList();

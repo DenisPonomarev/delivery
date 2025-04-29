@@ -19,16 +19,6 @@ public class DispatchServiceShould
     }
 
     [Fact]
-    public void ThrowExceptionWhenCouriersIsNull()
-    {
-        var service = new DispatchService();
-        var order = new Order(Guid.NewGuid(), new Location(5, 5));
-
-        var exception = Assert.Throws<ArgumentNullException>(() => service.Dispatch(order, null!));
-        exception.ParamName.Should().Be("couriers");
-    }
-
-    [Fact]
     public void ThrowExceptionWhenOrderStatusIsNotCreated()
     {
         var service = new DispatchService();
