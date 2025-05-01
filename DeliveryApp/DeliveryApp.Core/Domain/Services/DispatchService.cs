@@ -31,6 +31,9 @@ public class DispatchService : IDispatchService
             }
         }
         
+        order.Assigne(fasterCourier);
+        fasterCourier.SetBusy();
+        
         return fasterCourier;
     }
 }
