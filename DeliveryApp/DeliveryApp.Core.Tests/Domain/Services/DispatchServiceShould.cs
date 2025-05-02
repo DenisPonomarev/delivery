@@ -55,7 +55,7 @@ public class DispatchServiceShould
     }
 
     [Fact]
-    public void DispatchCorrectly()
+    public void DispatchWalkingCouriersCorrectly()
     {
         var service = new DispatchService();
         var order = new Order(Guid.NewGuid(), new Location(5, 5));
@@ -67,10 +67,26 @@ public class DispatchServiceShould
         };
 
         var fasterCourier = service.Dispatch(order, couriers);
+        
         fasterCourier.Name.Should().Be("Courier 3");
+        order.CourierId.Should().Be(fasterCourier.Id);
+    }
+    
+    [Fact]
+    public void DispatchCorrectly()
+    {
+        var service = new DispatchService();
+        var order = new Order(Guid.NewGuid(), new Location(5, 5));
+        var couriers = new List<Courier>
+        {
+            new("Courier 1", "Car", 3, new Location(1, 1)),
+            new("Courier 2", "Legs", 1, new Location(2, 2)),
+            new("Courier 3", "Legs", 1, new Location(2, 3))
+        };
 
-        couriers[0] = new Courier("Courier 1", "Car", 3, new Location(1, 1));
-        fasterCourier = service.Dispatch(order, couriers);
+        var fasterCourier = service.Dispatch(order, couriers);
+        
         fasterCourier.Name.Should().Be("Courier 1");
+        order.CourierId.Should().Be(fasterCourier.Id);
     }
 }
