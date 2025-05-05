@@ -10,15 +10,15 @@ public class Location : ValueObject
     private const int MIN_Y = 1;
     private const int MAX_Y = 10;
 
-    public static readonly Location MinLocation = new(MIN_X, MIN_Y);
-    public static readonly Location MaxLocation = new(MAX_X, MAX_Y);
+    public static Location MinLocation => new(MIN_X, MIN_Y);
+    public static Location MaxLocation => new(MAX_X, MAX_Y);
 
     [ExcludeFromCodeCoverage]
     private Location()
     {
     }
 
-    public Location(int x, int y)
+    public Location(int x, int y) : this()
     {
         if (x is < MIN_X or > MAX_X) throw new ArgumentOutOfRangeException(nameof(x));
         if (y is < MIN_Y or > MAX_Y) throw new ArgumentOutOfRangeException(nameof(y));

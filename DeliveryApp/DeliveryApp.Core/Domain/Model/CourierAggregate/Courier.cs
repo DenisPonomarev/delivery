@@ -13,9 +13,9 @@ public class Courier : Aggregate<Guid>
 
     public Courier(string name, string transportName, int transportSpeed, Location location) : this()
     {
-        if (string.IsNullOrWhiteSpace(name)) 
+        if (string.IsNullOrWhiteSpace(name))
             throw new ArgumentException(null, nameof(name));
-        
+
         ArgumentNullException.ThrowIfNull(location);
 
         Id = Guid.NewGuid();
@@ -25,10 +25,10 @@ public class Courier : Aggregate<Guid>
         Status = CourierStatus.Free;
     }
 
-    public string Name { get; private set; }
-    public Transport Transport { get; private set; }
-    public Location Location { get; private set; }
-    public CourierStatus Status { get; private set; }
+    public string Name { get; private set; } = null!;
+    public Transport Transport { get; private set; } = null!;
+    public Location Location { get; private set; } = null!;
+    public CourierStatus Status { get; private set; } = null!;
 
     public void SetFree()
     {
@@ -39,7 +39,7 @@ public class Courier : Aggregate<Guid>
     {
         if (Status == CourierStatus.Busy)
             throw new Exception("Already Busy");
-        
+
         Status = CourierStatus.Busy;
     }
 

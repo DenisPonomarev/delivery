@@ -19,7 +19,7 @@ public class OrderStatus : ValueObject
         Name = name;
     }
     
-    public string Name { get; private set; }
+    public string Name { get; private set; }  = null!;
     
     protected override IEnumerable<object> GetEqualityComponents()
     {
