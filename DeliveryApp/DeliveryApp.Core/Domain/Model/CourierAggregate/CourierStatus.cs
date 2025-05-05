@@ -13,12 +13,12 @@ public class CourierStatus : ValueObject
     {
     }
 
-    private CourierStatus(string name)
+    private CourierStatus(string name) : this()
     {
         Name = name;
     }
     
-    public string Name { get; private set; }
+    public string Name { get; private set; } = null!;
     
     protected override IEnumerable<object> GetEqualityComponents()
     {

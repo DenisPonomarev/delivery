@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{CE4475C3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Primitives", "Primitives\Primitives.csproj", "{3E249506-A640-4E6E-895F-51EE0C2984EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveryApp.IntegrationTests", "DeliveryApp.IntegrationTests\DeliveryApp.IntegrationTests.csproj", "{BED1294D-799C-460A-9803-EFC994E7D0ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,9 +42,14 @@ Global
 		{3E249506-A640-4E6E-895F-51EE0C2984EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E249506-A640-4E6E-895F-51EE0C2984EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E249506-A640-4E6E-895F-51EE0C2984EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BED1294D-799C-460A-9803-EFC994E7D0ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BED1294D-799C-460A-9803-EFC994E7D0ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BED1294D-799C-460A-9803-EFC994E7D0ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BED1294D-799C-460A-9803-EFC994E7D0ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{236DEE58-BAB5-4E8A-B9B6-49C2EC325EA3} = {68B9E0C9-9446-4725-B3F3-D390A80B4206}
 		{3E249506-A640-4E6E-895F-51EE0C2984EA} = {CE4475C3-1CA8-4FB3-AA51-C6C7AD3B55BD}
+		{BED1294D-799C-460A-9803-EFC994E7D0ED} = {68B9E0C9-9446-4725-B3F3-D390A80B4206}
 	EndGlobalSection
 EndGlobal

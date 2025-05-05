@@ -26,7 +26,9 @@ public class CourierShould
     }
 
     [Theory]
+#pragma warning disable xUnit1012
     [InlineData(null)]
+#pragma warning restore xUnit1012
     [InlineData("")]
     public void ThrowExceptionWhenNameIsIncorrectOnCreated(string name)
     {

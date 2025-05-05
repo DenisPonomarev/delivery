@@ -75,7 +75,6 @@ public class DispatchServiceShould
     [Fact]
     public void DispatchCorrectly()
     {
-        var service = new DispatchService();
         var order = new Order(Guid.NewGuid(), new Location(5, 5));
         var couriers = new List<Courier>
         {
@@ -84,6 +83,7 @@ public class DispatchServiceShould
             new("Courier 3", "Legs", 1, new Location(2, 3))
         };
 
+        var service = new DispatchService();
         var fasterCourier = service.Dispatch(order, couriers);
         
         fasterCourier.Name.Should().Be("Courier 1");

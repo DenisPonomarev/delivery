@@ -5,12 +5,12 @@ using Primitives;
 
 namespace DeliveryApp.Core.Domain.Model.OrderAggregate;
 
-public class Order : Aggregate<Guid>
+public sealed class Order : Aggregate<Guid>
 {
     [ExcludeFromCodeCoverage]
     private Order() { }
 
-    public Order(Guid basketId, Location location)
+    public Order(Guid basketId, Location location) : this()
     {
         if (basketId == Guid.Empty)
             throw new ArgumentException(null, nameof(basketId));
@@ -23,8 +23,8 @@ public class Order : Aggregate<Guid>
     }
 
     public Guid? CourierId { get; private set; }
-    public OrderStatus Status { get; private set; }
-    public Location Location { get; private set; }
+    public OrderStatus Status { get; private set; } = null!;
+    public Location Location { get; private set; } = null!;
 
     public void Assigne(Courier courier)
     {
