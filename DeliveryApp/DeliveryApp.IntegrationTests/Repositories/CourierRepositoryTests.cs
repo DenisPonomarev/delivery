@@ -48,7 +48,7 @@ public class CourierRepositoryShould : IAsyncLifetime
                 sqlOptions => { sqlOptions.MigrationsAssembly("DeliveryApp.Infrastructure"); })
             .Options;
         _context = new ApplicationDbContext(contextOptions);
-        _context.Database.Migrate();
+        await _context.Database.MigrateAsync();
     }
 
     /// <summary>
