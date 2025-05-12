@@ -136,7 +136,7 @@ public class CourierRepositoryShould : IAsyncLifetime
         await unitOfWork.SaveChangesAsync();
 
         //Act
-        var couriersFromDb = courierRepository.GetAllInFreeStatus().ToList();
+        var couriersFromDb = await courierRepository.GetAllInFreeStatusAsync();
 
         //Assert
         couriersFromDb.Should().NotBeEmpty();

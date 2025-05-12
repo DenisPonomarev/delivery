@@ -8,5 +8,5 @@ public interface IOrderRepository
     void Update(Order order);
     Task<Order?> GetAsync(Guid orderId);
     Task<Order?> GetFirstInCreatedStatusAsync();
-    IEnumerable<Order> GetAllInAssignedStatus();
+    Task<List<Order>> GetAllInAssignedStatusAsync();
 }
